@@ -9,23 +9,32 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  Button,
+  Stack,
+  Badge,
 } from "@chakra-ui/react";
 import BasicMenu from "../Menu/BasicMenu";
 import { manageProductsTableOption } from "../../constants";
 import { useNavigate } from "react-router-dom";
 
-export default function BasicTable() {
+export default function BasicTable({ data = [] }) {
   const navigate = useNavigate();
   const handleOptions = (value) => {
     if (value === 0) {
       navigate("/editProduct/1?mode=update");
     } else if (value === 1) {
     }
+  };
+
+  const renderFoodType = (type = "") => {
+    return (
+      <Stack direction="row">
+        {type === "0" ? (
+          <Badge colorScheme="green">Veg</Badge>
+        ) : (
+          <Badge colorScheme="red">Non-Veg</Badge>
+        )}
+      </Stack>
+    );
   };
 
   return (
@@ -42,19 +51,21 @@ export default function BasicTable() {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>Pepproni Pizza</Td>
-            <Td>Veg</Td>
-            <Td isNumeric>329</Td>
-            <Td isNumeric>10</Td>
-            <Td>%</Td>
-            <Td>
-              <BasicMenu
-                options={manageProductsTableOption}
-                handleOptions={handleOptions}
-              />
-            </Td>
-          </Tr>
+          {data.map((d, i) => (
+            <Tr>
+              <Td>{d.name}</Td>
+              <Td>{renderFoodType(d.foodType)}</Td>
+              <Td isNumeric>{d.price}</Td>
+              <Td isNumeric>{d.discount}</Td>
+              <Td>{d.discountType}</Td>
+              <Td>
+                <BasicMenu
+                  options={manageProductsTableOption}
+                  handleOptions={handleOptions}
+                />
+              </Td>
+            </Tr>
+          ))}
         </Tbody>
         {/* <Tfoot>
           <Tr>
