@@ -4,7 +4,7 @@ import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import routes from "./routes";
 import { Routes, Route } from "react-router-dom";
-
+console.log(process.env);
 function App() {
   return (
     <div>

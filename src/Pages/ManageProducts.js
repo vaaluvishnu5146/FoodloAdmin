@@ -5,7 +5,7 @@ import BasicTable from "../Components/Tabel/BasicTable";
 export default function ManageProducts() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/")
+    fetch("https://foodlo-dev-app.onrender.com/api/products/")
       .then((response) => response.json())
       .then((result) => {
         if (result.data.length > 0) {

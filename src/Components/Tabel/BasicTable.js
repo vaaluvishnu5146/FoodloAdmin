@@ -18,9 +18,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function BasicTable({ data = [] }) {
   const navigate = useNavigate();
-  const handleOptions = (value) => {
+  const handleOptions = (value, id = "") => {
     if (value === 0) {
-      navigate("/editProduct/1?mode=update");
+      navigate(`/createProduct?productId=${id}&&mode=update`);
     } else if (value === 1) {
     }
   };
@@ -60,6 +60,7 @@ export default function BasicTable({ data = [] }) {
               <Td>{d.discountType}</Td>
               <Td>
                 <BasicMenu
+                  data={d}
                   options={manageProductsTableOption}
                   handleOptions={handleOptions}
                 />

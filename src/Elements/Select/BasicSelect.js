@@ -7,6 +7,7 @@ export default function BasicSelect({
   options = [],
   id = "",
   label = "",
+  value = "",
 }) {
   return (
     <>
@@ -17,6 +18,7 @@ export default function BasicSelect({
         id={id}
         placeholder={placeholder}
         onChange={(o) => handleChange(o)}
+        value={value}
       >
         {options.length > 0 &&
           options.map((o, i) => (
